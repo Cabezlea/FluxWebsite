@@ -12,8 +12,8 @@ const Hero = () => {
                 <div className="absolute w-[200%] h-[200%] animate-rotate bg-grid-blue-500/20" />
             </div>
 
-            {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
+            {/* Scroll indicator - Hidden on mobile */}
+            <div className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
                 <div className="w-8 h-14 rounded-3xl border-2 border-blue-500 flex justify-center">
                     <div className="w-1 h-3 bg-blue-500 rounded-full mt-2 animate-pulse"></div>
                 </div>
@@ -64,7 +64,7 @@ const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
-                        className="flex flex-col md:flex-row gap-4 md:gap-6 justify-center relative z-20"
+                        className="flex flex-col md:flex-row gap-4 md:gap-6 justify-center"
                     >
                         <button
                             onClick={() => navigate('/contact')}
