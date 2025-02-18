@@ -45,7 +45,7 @@ const Hero = () => {
                         {[
                             { icon: FiPackage, title: "$1.50/item", desc: "Flat processing fee" },
                             { icon: FiClock, title: "14 Days Free", desc: "Initial storage period" },
-                            { icon: FiDollarSign, title: "$0.025/ft³", desc: "Daily storage after 14 days" },
+                            { icon: FiDollarSign, title: "$0.05/ft³", desc: "Daily storage after 14 days" },
                         ].map((stat, idx) => (
                             <motion.div
                                 key={idx}
