@@ -1,9 +1,10 @@
-// components/Navbar/Navbar.js
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const closeMenu = () => setIsOpen(false);
 
     return (
         <nav className="fixed w-full z-50 backdrop-blur-md bg-black/50 border-b border-gray-800">
@@ -11,9 +12,9 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link to="/" className="flex-shrink-0">
-            <span className="text-2xl font-bold text-gray-100">
-              FLUX<span className="text-blue-500">TX</span>
-            </span>
+                        <span className="text-2xl font-bold text-gray-100">
+                            FLUX<span className="text-blue-500">TX</span>
+                        </span>
                     </Link>
 
                     {/* Desktop Menu */}
@@ -55,16 +56,16 @@ const Navbar = () => {
                 {isOpen && (
                     <div className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            <Link to="/" className="text-gray-300 hover:text-blue-500 block px-3 py-2">
+                            <Link to="/" onClick={closeMenu} className="text-gray-300 hover:text-blue-500 block px-3 py-2">
                                 Home
                             </Link>
-                            <Link to="/services" className="text-gray-300 hover:text-blue-500 block px-3 py-2">
+                            <Link to="/services" onClick={closeMenu} className="text-gray-300 hover:text-blue-500 block px-3 py-2">
                                 Services
                             </Link>
-                            <Link to="/about" className="text-gray-300 hover:text-blue-500 block px-3 py-2">
+                            <Link to="/about" onClick={closeMenu} className="text-gray-300 hover:text-blue-500 block px-3 py-2">
                                 About
                             </Link>
-                            <Link to="/contact" className="text-gray-300 hover:text-blue-500 block px-3 py-2">
+                            <Link to="/contact" onClick={closeMenu} className="text-gray-300 hover:text-blue-500 block px-3 py-2">
                                 Contact
                             </Link>
                         </div>
