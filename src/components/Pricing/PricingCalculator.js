@@ -9,7 +9,7 @@ const PricingCalculator = () => {
     const calculateTotal = () => {
         const processingFee = items * 1.5;
         const storageFee = storageDays > 14 ?
-            (storageDays - 14) * cubicFeet * 0.025 : 0;
+            (storageDays - 14) * cubicFeet * 0.05 : 0;
 
         return processingFee + storageFee;
     };
@@ -71,7 +71,7 @@ const PricingCalculator = () => {
                 Storage ({storageDays - 14} days × {cubicFeet}ft³:
               </span>
                             <span>
-                ${((storageDays - 14) * cubicFeet * 0.025).toFixed(2)}
+                ${((storageDays - 14) * cubicFeet * 0.05).toFixed(2)}
               </span>
                         </div>
                     )}
