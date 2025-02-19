@@ -86,7 +86,6 @@ const Contact = () => {
                                 <p className="text-sm">
                                     Phone: (936) 668-1606<br/>
                                     Email: support@fluxtexas.com<br/>
-                                    Emergency: (936) 668-1606
                                 </p>
                             </div>
                         </div>
