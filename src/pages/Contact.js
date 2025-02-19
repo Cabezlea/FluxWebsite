@@ -37,7 +37,7 @@ const Contact = () => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Failed to Send',
+                title: 'Failed to Sendd',
                 text: 'Please try again or contact us directly',
                 confirmButtonColor: '#007bff',
                 background: '#111',
