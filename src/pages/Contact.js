@@ -85,8 +85,8 @@ const Contact = () => {
                                 <h3 className="font-semibold mb-3">Direct Contact</h3>
                                 <p className="text-sm">
                                     Phone: (936) 668-1606<br/>
-                                    Email: support@fluxtx.com<br/>
-                                    Emergency: (936) 668-1607
+                                    Email: support@fluxtexas.com<br/>
+                                    Emergency: (936) 668-1606
                                 </p>
                             </div>
                         </div>
