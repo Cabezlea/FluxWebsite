@@ -1,14 +1,51 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { FiUser, FiMail, FiMessageSquare, FiCheckCircle } from 'react-icons/fi';
+import emailjs from '@emailjs/browser';
+import { FiUser, FiMail, FiMessageSquare } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = (data) => {
-        // Replace with actual submission logic
-        console.log(data);
-        alert('Message received! We\'ll respond within 2 hours.');
+    const onSubmit = async (data) => {
+        setIsLoading(true);
+        try {
+            await emailjs.send(
+                process.env.REACT_APP_EMAILJS_SERVICE_ID,
+                process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: data.name,
+                    from_email: data.email,
+                    message: data.message,
+                    to_email: 'support@fluxtexas.com',
+                    to_name: 'Support Team',
+                    reply_to: data.email
+                },
+                process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+            );
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Message Sent!',
+                text: 'We\'ll respond within 2 business hours',
+                confirmButtonColor: '#007bff',
+                background: '#111',
+                color: '#fff'
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed to Send',
+                text: 'Please try again or contact us directly',
+                confirmButtonColor: '#007bff',
+                background: '#111',
+                color: '#fff'
+            });
+            console.error('EmailJS Error:', error);
+        }
+        setIsLoading(false);
     };
 
     return (
@@ -43,7 +80,10 @@ const Contact = () => {
                             </label>
                             <input
                                 type="email"
-                                {...register('email', { required: true })}
+                                {...register('email', {
+                                    required: true,
+                                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+                                })}
                                 className="w-full bg-gray-900 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
                             />
                             {errors.email && <span className="text-red-500">Valid email required</span>}
@@ -64,9 +104,10 @@ const Contact = () => {
 
                         <button
                             type="submit"
-                            className="w-full bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition-all font-medium"
+                            disabled={isLoading}
+                            className="w-full bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Send Message
+                            {isLoading ? 'Sending...' : 'Send Message'}
                         </button>
                     </form>
 
